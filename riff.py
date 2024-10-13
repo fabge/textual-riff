@@ -40,7 +40,7 @@ class MusicPlayer(App):
                 Static(' ', id="now-playing"),
                 Horizontal(
                     Static("0:00", id="current-time"),
-                    ProgressBar(total=100, id="progress", show_percentage=False),
+                    ProgressBar(total=100, id="progress", show_percentage=False, show_eta=False),
                     Static("0:00", id="total-duration"),
                     id="progress-container",
                 ),

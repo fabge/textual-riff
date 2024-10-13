@@ -11,27 +11,29 @@
 }
 
 #player {
-    height: 5;
+    height: 4;
     padding: 1 2;
     background: $surface-darken-1;
 }
 
-ProgressBar {
+#progress-container {
     width: 100%;
+    background: $surface-lighten-2;
 }
 
-ListItem {
-    layout: horizontal;
-    height: 1;
+#current-time, #total-duration {
+    width: 10%;
+    background: $primary;
+    content-align: center middle;
 }
 
-ListItem > Horizontal {
-    width: 100%;
+#progress {
+    width: 80%;
+    background: $secondary;
 }
 
 .track-name {
     width: 80%;
-    content-align: left middle;
 }
 
 .track-length {
