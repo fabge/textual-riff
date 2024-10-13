@@ -19,3 +19,22 @@
 ProgressBar {
     width: 100%;
 }
+
+ListItem {
+    layout: horizontal;
+    height: 1;
+}
+
+ListItem > Horizontal {
+    width: 100%;
+}
+
+.track-name {
+    width: 80%;
+    content-align: left middle;
+}
+
+.track-length {
+    width: 20%;
+    content-align: right middle;
+}
