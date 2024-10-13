@@ -1,4 +1,5 @@
 import os
+import sys
 import threading
 import time
 from pathlib import Path
@@ -14,6 +15,7 @@ from textual.containers import Horizontal, Vertical
 from textual.widgets import DirectoryTree, Footer, ListItem, ListView, ProgressBar, Static
 from textual.timer import Timer
 from textual import work
+from textual.message import Message
 
 FILE_EXTENSIONS = ['.mp3', '.wav', '.ogg']
 
@@ -42,11 +44,15 @@ class MusicPlayer(App):
         self.total_duration = 0
         self.is_playing = False
         self.paused_time = 0
+        pygame.init()  # Initialize pygame
+        pygame.mixer.init()  # Initialize pygame mixer
 
     def compose(self) -> ComposeResult:
+        # Get the path from command line argument or use current directory
+        path = "./" if len(sys.argv) < 2 else sys.argv[1]
         yield Vertical(
             Horizontal(
-                FilteredDirectoryTree(".", id="albums"),
+                FilteredDirectoryTree(path, id="albums"),
                 ListView(id="tracks"),
             ),
             Vertical(
@@ -64,7 +70,8 @@ class MusicPlayer(App):
 
     def on_mount(self) -> None:
         self.query_one(DirectoryTree).focus()
-        pygame.mixer.init()  # Initialize pygame mixer
+        pygame.mixer.music.set_endevent(pygame.USEREVENT)  # Set up end of track event
+        self.set_interval(0.1, self.check_music_end)  # Check for end of track regularly
 
     def on_directory_tree_directory_selected(self, event: DirectoryTree.DirectorySelected) -> None:
         self.selected_directory = event.path
@@ -163,6 +170,16 @@ class MusicPlayer(App):
 
         self.query_one("#progress").update(progress=progress)
         self.query_one("#current-time").update(time_str)
+
+    def check_music_end(self) -> None:
+        if not pygame.mixer.music.get_busy() and self.is_playing:
+            self.post_message(self.TrackEnded())
+
+    class TrackEnded(Message):
+        """A message sent when a track has ended."""
+
+    def on_music_player_track_ended(self) -> None:
+        self.action_next_track()
 
 if __name__ == "__main__":
     app = MusicPlayer()
