@@ -1,8 +1,0 @@
-#one {
-    background: blue;
-    color: darkred;
-}
-
-#two {
-    background: darkolivegreen;
-}

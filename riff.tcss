@@ -33,6 +33,17 @@ Bar {
     width: 100%;
 }
 
+ListItem {
+    color: $text;
+    height: auto;
+    background: $surface;
+    overflow: hidden hidden;
+}
+
+ListView:focus > ListItem.--highlight {
+    background: $accent;
+}
+
 .track-name {
     width: 80%;
 }
