@@ -93,17 +93,17 @@ class MusicPlayer(App):
             self.query_one("#tracks").append(list_item)
 
     def action_toggle_play(self) -> None:
-        if self.current_track:
-            if self.is_playing:
-                pygame.mixer.music.pause()
-                self.is_playing = False
-                self.paused_time = time.time() - self.start_time
-                self.progress_timer.stop()
-            else:
-                pygame.mixer.music.unpause()
-                self.is_playing = True
-                self.start_time = time.time() - self.paused_time
-                self.progress_timer = self.set_interval(0.1, self.update_progress)
+        # if self.current_track: # reintroduce when `self.current_track` is not set properly when using the next/previous track bindings is fixed
+        if self.is_playing:
+            pygame.mixer.music.pause()
+            self.is_playing = False
+            self.paused_time = time.time() - self.start_time
+            self.progress_timer.stop()
+        else:
+            pygame.mixer.music.unpause()
+            self.is_playing = True
+            self.start_time = time.time() - self.paused_time
+            self.progress_timer = self.set_interval(0.1, self.update_progress)
 
     def action_next_track(self) -> None:
         tracks_list = self.query_one("#tracks")

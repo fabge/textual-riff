@@ -29,6 +29,10 @@
     width: 80%;
 }
 
+Bar {
+    width: 100%;
+}
+
 .track-name {
     width: 80%;
 }
