@@ -1,0 +1,67 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "textual-riff"
+dynamic = ["version"]
+description = ''
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT"
+keywords = []
+authors = [
+  { name = "Fabian Geiger" },
+]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Programming Language :: Python",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: Implementation :: CPython",
+  "Programming Language :: Python :: Implementation :: PyPy",
+]
+dependencies = [
+  "mutagen==1.47.0",
+  "pygame==2.6.1",
+  "textual==0.83.0",
+]
+
+[project.scripts]
+riff = "textual_riff.entry_points:riff"
+
+[project.urls]
+Homepage = "https://github.com/fabge/textual-riff"
+Changelog = "https://github.com/fabge/textual-riff/releases"
+Issues = "https://github.com/fabge/textual-riff/issues"
+CI = "https://github.com/fabge/textual-riff/actions"
+
+[tool.hatch.version]
+path = "src/textual_riff/__about__.py"
+
+[tool.hatch.envs.types]
+extra-dependencies = [
+  "mypy>=1.0.0",
+]
+[tool.hatch.envs.types.scripts]
+check = "mypy --install-types --non-interactive {args:src/textual_riff tests}"
+
+[tool.coverage.run]
+source_pkgs = ["textual_riff", "tests"]
+branch = true
+parallel = true
+omit = [
+  "src/textual_riff/__about__.py",
+]
+
+[tool.coverage.paths]
+textual_riff = ["src/textual_riff", "*/textual-riff/src/textual_riff"]
+tests = ["tests", "*/textual-riff/tests"]
+
+[tool.coverage.report]
+exclude_lines = [
+  "no cov",
+  "if __name__ == .__main__.:",
+  "if TYPE_CHECKING:",
+]

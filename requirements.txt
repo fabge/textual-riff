@@ -1,3 +1,0 @@
-mutagen==1.47.0
-pygame==2.6.1
-textual==0.83.0
