@@ -1,0 +1,21 @@
+#albums {
+    width: 30%;
+    padding: 1 2;
+    background: $panel;
+}
+
+#tracks {
+    width: 70%;
+    padding: 1 2;
+    background: $surface;
+}
+
+#player {
+    height: 5;
+    padding: 1 2;
+    background: $surface-darken-1;
+}
+
+ProgressBar {
+    width: 100%;
+}
