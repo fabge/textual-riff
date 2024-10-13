@@ -18,7 +18,6 @@
 
 #progress-container {
     width: 100%;
-    background: $surface-lighten-2;
 }
 
 #current-time, #total-duration {
