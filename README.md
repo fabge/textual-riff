@@ -5,6 +5,8 @@
 
 A terminal music player written in Python using [Textual](https://github.com/textualize/textual/).
 
+![screenshot](assets/riff.png)
+
 ## features
 
 - Control the player with previous (p), next (n), and pause (space)
