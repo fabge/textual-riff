@@ -6,8 +6,6 @@ from pathlib import Path
 from typing import Iterable
 
 import pygame
-from pydub import AudioSegment
-from pydub.playback import play
 from mutagen import File as MutagenFile
 
 from textual.app import App, ComposeResult
@@ -17,7 +15,7 @@ from textual.timer import Timer
 from textual import work
 from textual.message import Message
 
-FILE_EXTENSIONS = ['.mp3', '.wav', '.ogg']
+FILE_EXTENSIONS = ['.mp3', '.ogg']
 
 
 class FilteredDirectoryTree(DirectoryTree):
