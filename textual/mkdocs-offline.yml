@@ -1,0 +1,10 @@
+INHERIT: mkdocs-common.yml
+
+plugins:
+  offline:
+  exclude:
+    glob:
+      - "**/_template.md"
+      - blog/*
+
+site_dir: docs-offline
