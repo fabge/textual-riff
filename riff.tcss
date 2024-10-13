@@ -23,13 +23,11 @@
 
 #current-time, #total-duration {
     width: 10%;
-    background: $primary;
     content-align: center middle;
 }
 
 #progress {
     width: 80%;
-    background: $secondary;
 }
 
 .track-name {

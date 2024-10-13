@@ -41,7 +41,7 @@ class MusicPlayer(App):
                 Horizontal(
                     Static("0:00", id="current-time"),
                     ProgressBar(total=100, id="progress", show_percentage=False, show_eta=False),
-                    Static("0:00", id="total-duration"),
+                    Static("", id="total-duration"),  # Remove the default "0:00"
                     id="progress-container",
                 ),
                 id="player",
@@ -81,8 +81,14 @@ class MusicPlayer(App):
     def on_list_view_selected(self, event: ListView.Selected) -> None:
         selected_track = str(event.item.children[0].children[0].render())
         self.query_one("#now-playing").update(selected_track)
-        # full_path = Path(self.selected_directory) / selected_track
-
+        full_path = Path(self.selected_directory) / selected_track
+        
+        # Get the total duration from the file
+        audio = MutagenFile(str(full_path))
+        if audio is not None:
+            length_seconds = audio.info.length
+            length_formatted = f"{int(length_seconds // 60)}:{int(length_seconds % 60):02d}"
+            self.query_one("#total-duration").update(length_formatted)
 
 if __name__ == "__main__":
     app = MusicPlayer()
